@@ -13,9 +13,9 @@ function app() {
             type: "list",
             message: "What would you like to do?",
             choices: [
-                "View All Employees",
+                "View all Employees",
                 "View all Departments",
-                "View All Roles",
+                "View all Roles",
                 "Search for an Employee",
                 "Search for Employees by Manager",
                 "Add Employee",
@@ -31,11 +31,13 @@ function app() {
         })
         .then(function(answer) {
             switch (answer.action) {
-                case "View All Employees":
+                case "View all Employees":
+                    allEmployees();
                     break;
-                case "View All Departments":
+                case "View all Departments":
+                    allDepts();
                     break;
-                case "View All Roles":
+                case "View all Roles":
                     break;
                 case "Search for an Employee":
                     break;
@@ -62,6 +64,29 @@ function app() {
             }
         });
 };
+
+function allEmployees() {
+    const sql= `SELECT * FROM employee`;
+    db.query(sql, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+    });
+    app();
+};
+
+function allDepts() {
+    const sql= `SELECT * FROM department`;
+    db.query(sql, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+    });
+    app();
+};
+
+
+
+
+
 
 app();
 
