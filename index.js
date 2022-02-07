@@ -274,7 +274,7 @@ function updateRole() {
             ]
         },
         {
-            name: 'roleName',
+            name: 'title',
             type: 'list',
             message: 'Which role do you want to assign to the selected employee?',
             choices: [
@@ -291,7 +291,7 @@ function updateRole() {
     ])
         .then(function(answer) {
             const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
-            db.query(sql, [parseInt(answer.employeeName), parseInt(answer.roleName)], function(err, res) {
+            db.query(sql, [parseInt(answer.title), parseInt(answer.employeeName)], function(err, res) {
                 if (err) throw err;
                 console.table(res);
             })
@@ -330,7 +330,7 @@ function updateManager() {
     ])
         .then(function(answer) {
             sql = `UPDATE employee SET manager_id = ? where id = ?`;
-            db.query(sql, [parseInt(answer.employeeName), parseInt(answer.managerName)], function(err, res) {
+            db.query(sql, [parseInt(answer.managerName), parseInt(answer.employeeName)], function(err, res) {
                 if (err) throw err;
                 console.table(res);
             });
